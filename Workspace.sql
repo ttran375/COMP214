@@ -86,4 +86,22 @@ HAVING
             order#
     );
 
-select * from books 
+SELECT
+    b.title,
+    b.retail,
+    a.category,
+    a.cataverage
+FROM
+    books b,
+    (
+        SELECT
+            category,
+            AVG(retail) AS cataverage
+        FROM
+            books
+        GROUP BY
+            category
+    ) a
+WHERE
+    b.category = a.category
+    AND b.retail > a.cataverage;
