@@ -13,7 +13,8 @@ WHERE
         WHERE
             title = 'DATABASE IMPLEMENTATION'
     )
-    AND category = 'COMPUTER'
+    AND category = 'COMPUTER';
+
 SELECT
     category,
     AVG(retail - cost)
@@ -30,3 +31,21 @@ HAVING
         WHERE
             category = 'LITERATURE'
     );
+
+SELECT
+    title,
+    retail,
+    category
+FROM
+    books
+WHERE
+    retail IN (
+        SELECT
+            MAX(retail)
+        FROM
+            books
+        GROUP BY
+            category
+    )
+ORDER BY
+    category;
