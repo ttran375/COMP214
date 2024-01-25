@@ -49,3 +49,39 @@ WHERE
     )
 ORDER BY
     category;
+
+SELECT
+    title,
+    retail
+FROM
+    books
+WHERE
+    retail < ANY (
+        SELECT
+            retail
+        FROM
+            books
+        WHERE
+            category = 'COOKING'
+    );
+
+SELECT
+    order#,
+    SUM(quantity * paideach)
+FROM
+    orderitems
+GROUP BY
+    order#
+HAVING
+    SUM(quantity * paideach) > ALL (
+        SELECT
+            SUM(quantity * paideach)
+        FROM
+            customers
+            JOIN orders USING (customer#)
+            JOIN orderitems USING (order#)
+        WHERE
+            state = 'FL'
+        GROUP BY
+            order#
+    );
