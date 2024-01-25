@@ -105,3 +105,17 @@ FROM
 WHERE
     b.category = a.category
     AND b.retail > a.cataverage;
+
+SELECT
+    customer#
+FROM
+    customers
+WHERE
+    (referred, 0) = (
+        SELECT
+            NVL(referred, 0)
+        FROM
+            customers
+        WHERE
+            customer# = 1005
+    );
