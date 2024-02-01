@@ -1,3 +1,5 @@
+alter session set nls_date_format='DD-MON-YYYY';
+
 CREATE TABLE BB_Department (
 	idDepartment number(2)  ,
 	DeptName varchar2(25) ,
