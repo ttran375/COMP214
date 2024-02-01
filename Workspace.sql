@@ -234,3 +234,11 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('An error occurred: '
                              || SQLERRM);
 END;
+
+DECLARE
+    MY_VAR VARCHAR2(20);
+BEGIN
+    MY_VAR := 'Hello, PL/SQL!';
+    DBMS_OUTPUT.PUT_LINE(MY_VAR);
+END;
+/
