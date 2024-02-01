@@ -119,3 +119,6 @@ WHERE
         WHERE
             customer# = 1005
     );
+
+
+select firstname from bb_shopper;
