@@ -1,124 +1,236 @@
 SELECT
-    category,
-    title,
-    cost
+    CATEGORY,
+    TITLE,
+    COST
 FROM
-    books
+    BOOKS
 WHERE
-    cost > (
+    COST > (
         SELECT
-            cost
+            COST
         FROM
-            books
+            BOOKS
         WHERE
-            title = 'DATABASE IMPLEMENTATION'
+            TITLE = 'DATABASE IMPLEMENTATION'
     )
-    AND category = 'COMPUTER';
+    AND CATEGORY = 'COMPUTER';
 
 SELECT
-    category,
-    AVG(retail - cost)
+    CATEGORY,
+    AVG(RETAIL - COST)
 FROM
-    books
+    BOOKS
 GROUP BY
-    category
+    CATEGORY
 HAVING
-    AVG(retail - cost) > (
+    AVG(RETAIL - COST) > (
         SELECT
-            AVG(retail - cost)
+            AVG(RETAIL - COST)
         FROM
-            books
+            BOOKS
         WHERE
-            category = 'LITERATURE'
+            CATEGORY = 'LITERATURE'
     );
 
 SELECT
-    title,
-    retail,
-    category
+    TITLE,
+    RETAIL,
+    CATEGORY
 FROM
-    books
+    BOOKS
 WHERE
-    retail IN (
+    RETAIL IN (
         SELECT
-            MAX(retail)
+            MAX(RETAIL)
         FROM
-            books
+            BOOKS
         GROUP BY
-            category
+            CATEGORY
     )
 ORDER BY
-    category;
+    CATEGORY;
 
 SELECT
-    title,
-    retail
+    TITLE,
+    RETAIL
 FROM
-    books
+    BOOKS
 WHERE
-    retail < ANY (
+    RETAIL < ANY (
         SELECT
-            retail
+            RETAIL
         FROM
-            books
+            BOOKS
         WHERE
-            category = 'COOKING'
+            CATEGORY = 'COOKING'
     );
 
 SELECT
-    order#,
-    SUM(quantity * paideach)
+    ORDER#,
+    SUM(QUANTITY * PAIDEACH)
 FROM
-    orderitems
+    ORDERITEMS
 GROUP BY
-    order#
+    ORDER#
 HAVING
-    SUM(quantity * paideach) > ALL (
+    SUM(QUANTITY * PAIDEACH) > ALL (
         SELECT
-            SUM(quantity * paideach)
+            SUM(QUANTITY * PAIDEACH)
         FROM
-            customers
-            JOIN orders USING (customer#)
-            JOIN orderitems USING (order#)
+            CUSTOMERS
+            JOIN ORDERS
+            USING (CUSTOMER#)
+            JOIN ORDERITEMS
+            USING (ORDER#)
         WHERE
-            state = 'FL'
+            STATE = 'FL'
         GROUP BY
-            order#
+            ORDER#
     );
 
 SELECT
-    b.title,
-    b.retail,
-    a.category,
-    a.cataverage
+    B.TITLE,
+    B.RETAIL,
+    A.CATEGORY,
+    A.CATAVERAGE
 FROM
-    books b,
+    BOOKS B,
     (
         SELECT
-            category,
-            AVG(retail) AS cataverage
+            CATEGORY,
+            AVG(RETAIL) AS CATAVERAGE
         FROM
-            books
+            BOOKS
         GROUP BY
-            category
-    ) a
+            CATEGORY
+    )     A
 WHERE
-    b.category = a.category
-    AND b.retail > a.cataverage;
+    B.CATEGORY = A.CATEGORY
+    AND B.RETAIL > A.CATAVERAGE;
 
 SELECT
-    customer#
+    CUSTOMER#
 FROM
-    customers
+    CUSTOMERS
 WHERE
-    (referred, 0) = (
+    (REFERRED, 0) = (
         SELECT
-            NVL(referred, 0)
+            NVL(REFERRED, 0)
         FROM
-            customers
+            CUSTOMERS
         WHERE
-            customer# = 1005
+            CUSTOMER# = 1005
     );
 
+SELECT
+    FIRSTNAME
+FROM
+    BB_SHOPPER;
 
-select firstname from bb_shopper;
+DECLARE
+    V_FIRSTNAME       VARCHAR2(100);
+    V_QUANTITY        NUMBER;
+    V_SHIPPING_CHARGE NUMBER;
+BEGIN
+ -- Assuming shopper_id is known
+    SELECT
+        FIRSTNAME INTO V_FIRSTNAME
+    FROM
+        BB_SHOPPER
+    WHERE
+        SHOPPER_ID = :SHOPPER_ID;
+    SELECT
+        QUANTITY INTO V_QUANTITY
+    FROM
+        ORDERS
+    WHERE
+        SHOPPER_ID = :SHOPPER_ID;
+ -- Calculate shipping charges
+    V_SHIPPING_CHARGE := V_QUANTITY * 5; -- $5 shipping charge per item
+    DBMS_OUTPUT.PUT_LINE('Shipping charge for '
+                         || V_FIRSTNAME
+                         || ' is: '
+                         || V_SHIPPING_CHARGE);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No data found');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: '
+                             || SQLERRM);
+END;
+
+DECLARE
+    V_FIRSTNAME       VARCHAR2(100);
+    V_QUANTITY        NUMBER;
+    V_SHIPPING_CHARGE NUMBER;
+    V_INVENTORY       NUMBER;
+BEGIN
+ -- Assuming shopper_id and product_id are known
+    SELECT
+        FIRSTNAME INTO V_FIRSTNAME
+    FROM
+        BB_SHOPPER
+    WHERE
+        SHOPPER_ID = :SHOPPER_ID;
+    SELECT
+        QUANTITY INTO V_QUANTITY
+    FROM
+        ORDERS
+    WHERE
+        ORDER_ID = :ORDER_ID
+        AND PRODUCT_ID = :PRODUCT_ID;
+ -- Calculate shipping charges
+    V_SHIPPING_CHARGE := V_QUANTITY * 5; -- $5 shipping charge per item
+ -- Check and update product inventory
+    SELECT
+        INVENTORY INTO V_INVENTORY
+    FROM
+        PRODUCTS
+    WHERE
+        PRODUCT_ID = :PRODUCT_ID;
+    IF V_INVENTORY >= V_QUANTITY THEN
+        UPDATE PRODUCTS
+        SET
+            INVENTORY = INVENTORY - V_QUANTITY
+        WHERE
+            PRODUCT_ID = :PRODUCT_ID;
+    ELSE
+ -- Handle insufficient inventory
+        DBMS_OUTPUT.PUT_LINE('Insufficient inventory');
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('Shipping charge for '
+                         || V_FIRSTNAME
+                         || ' is: '
+                         || V_SHIPPING_CHARGE);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No data found');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: '
+                             || SQLERRM);
+END;
+
+DECLARE
+    V_QUANTITY NUMBER;
+BEGIN
+ -- Assuming order_id and product_id are known
+    SELECT
+        QUANTITY INTO V_QUANTITY
+    FROM
+        ORDERS
+    WHERE
+        ORDER_ID = :ORDER_ID
+        AND PRODUCT_ID = :PRODUCT_ID;
+    IF V_QUANTITY > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Quantity is greater than zero');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Quantity is not greater than zero');
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('No data found');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: '
+                             || SQLERRM);
+END;
