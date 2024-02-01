@@ -211,50 +211,11 @@ EXCEPTION
                              || SQLERRM);
 END;
 
-DECLARE
-    V_QUANTITY NUMBER;
 BEGIN
- -- Assuming order_id and product_id are known
-    SELECT
-        QUANTITY INTO V_QUANTITY
-    FROM
-        ORDERS
-    WHERE
-        ORDER_ID = :ORDER_ID
-        AND PRODUCT_ID = :PRODUCT_ID;
-    IF V_QUANTITY > 0 THEN
-        DBMS_OUTPUT.PUT_LINE('Quantity is greater than zero');
-    ELSE
-        DBMS_OUTPUT.PUT_LINE('Quantity is not greater than zero');
-    END IF;
+  EXECUTE IMMEDIATE 'DROP TABLE bb_audit_logon';
 EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('No data found');
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('An error occurred: '
-                             || SQLERRM);
-END;
-
-DECLARE
-    MY_VAR VARCHAR2(20);
-BEGIN
-    MY_VAR := 'Hello, PL/SQL!';
-    DBMS_OUTPUT.PUT_LINE(MY_VAR);
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('Error dropping table: ' || SQLERRM);
 END;
 /
 
-DECLARE
-    MY_VAR VARCHAR2(20);
-BEGIN
-    MY_VAR := 'Hello, PL/SQL!';
-    DBMS_OUTPUT.PUT_LINE(MY_VAR);
-END;
-/
-
-CREATE OR REPLACE PROCEDURE PRINT_MESSAGE AS
-    MY_VAR VARCHAR2(20);
-BEGIN
-    MY_VAR := 'Hello, PL/SQL!';
-    DBMS_OUTPUT.PUT_LINE(MY_VAR);
-END;
-/
