@@ -136,3 +136,14 @@ DBMS_OUTPUT.PUT_LINE('Order Date: ' || TO_CHAR(lv_ord_date, 'DD-MON-YYYY'));
 DBMS_OUTPUT.PUT_LINE('Last Text: ' || lv_last_txt);
 DBMS_OUTPUT.PUT_LINE('Quantity: ' || lv_qty_num);
 END;
+
+DECLARE
+  lv_shipcntry_txt VARCHAR2(15) NOT NULL := 'US'; -- Declare a NOT NULL string variable and assign a value
+  lv_taxrate_num CONSTANT NUMBER(2,2) := .06; -- Declare a CONSTANT number variable and assign a value
+BEGIN
+  ---- PL/SQL executable statements go here ----
+    DBMS_OUTPUT.PUT_LINE('Ship Country: ' || lv_shipcntry_txt);
+    DBMS_OUTPUT.PUT_LINE('Tax Rate: ' || lv_taxrate_num);
+
+END;
+/
