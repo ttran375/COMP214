@@ -176,3 +176,26 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Months between dates: ' || months_between_dates);
 END;
 /
+
+DECLARE
+  my_var NUMBER := 10;
+BEGIN
+  IF my_var > 5 THEN
+    DBMS_OUTPUT.PUT_LINE('my_var is greater than 5');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('my_var is not greater than 5');
+  END IF;
+END;
+/
+
+DECLARE
+  my_var NUMBER := 10;
+BEGIN
+  CASE 
+    WHEN my_var > 5 THEN
+      DBMS_OUTPUT.PUT_LINE('my_var is greater than 5');
+    ELSE
+      DBMS_OUTPUT.PUT_LINE('my_var is not greater than 5');
+  END CASE;
+END;
+/
