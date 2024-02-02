@@ -221,14 +221,13 @@ END;
 /
 
 DECLARE
-  my_var NUMBER := 10;
+  lv_state_txt CHAR(2) := 'VA';
+  lv_sub_num NUMBER(5,2) := 100;
+  lv_tax_num NUMBER(4,2) := 0;
 BEGIN
-  IF my_var > 10 THEN
-    DBMS_OUTPUT.PUT_LINE('my_var is greater than 10');
-  ELSIF my_var = 10 THEN
-    DBMS_OUTPUT.PUT_LINE('my_var is equal to 10');
-  ELSE
-    DBMS_OUTPUT.PUT_LINE('my_var is less than 10');
+  IF lv_state_txt = 'VA' THEN
+    lv_tax_num := lv_sub_num * 0.06;
   END IF;
+  DBMS_OUTPUT.PUT_LINE(lv_tax_num);
 END;
 /
