@@ -104,3 +104,24 @@ BEGIN
 END;
 /
 
+DECLARE
+   -- Scalar variable declarations using the bb schema
+   lv_ord_date bb_Basket.dtOrdered%TYPE;
+   lv_last_txt bb_Basket.ShipFlag%TYPE;
+   lv_qty_num bb_BasketItem.Quantity%TYPE;
+   lv_shipflag_bln bb_Basket.ShipFlag%TYPE;
+BEGIN
+   -- Example usage of the variables
+   SELECT dtOrdered, ShipFlag
+   INTO lv_ord_date, lv_last_txt
+   FROM bb_Basket
+   WHERE idBasket = 3;
+
+   -- Displaying the values (you can replace this with your logic)
+   DBMS_OUTPUT.PUT_LINE('Order Date: ' || TO_CHAR(lv_ord_date, 'DD-MON-YYYY'));
+   DBMS_OUTPUT.PUT_LINE('Ship Flag: ' || lv_last_txt);
+
+   -- Your PL/SQL executable statements would go here
+   -- You can initialize or use these variables within this block
+END;
+/
