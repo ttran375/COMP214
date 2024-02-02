@@ -83,7 +83,6 @@ BEGIN
 END;
 /
 
-
 DECLARE
   lv_ord_date DATE;         -- Declare a date variable
   lv_last_txt VARCHAR2(25); -- Declare a string variable with a maximum length of 25
