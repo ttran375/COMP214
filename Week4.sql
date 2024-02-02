@@ -124,3 +124,15 @@ BEGIN
    -- You can initialize or use these variables within this block
 END;
 /
+
+DECLARE
+lv_ord_date DATE := SYSDATE;
+lv_last_txt VARCHAR2(25) := 'Unknown';
+lv_qty_num NUMBER(2) := 0;
+lv_shipflag_bln BOOLEAN := FALSE;
+BEGIN
+---- PL/SQL executable statements ----
+DBMS_OUTPUT.PUT_LINE('Order Date: ' || TO_CHAR(lv_ord_date, 'DD-MON-YYYY'));
+DBMS_OUTPUT.PUT_LINE('Last Text: ' || lv_last_txt);
+DBMS_OUTPUT.PUT_LINE('Quantity: ' || lv_qty_num);
+END;
