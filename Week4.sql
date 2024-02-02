@@ -166,3 +166,13 @@ lv_taxamt_num := lv_total_num * lv_taxrate_num;
 DBMS_OUTPUT.PUT_LINE(lv_taxamt_num);
 END;
 /
+
+DECLARE
+  start_date DATE := TO_DATE('2021-01-01', 'YYYY-MM-DD');
+  end_date DATE := TO_DATE('2022-01-01', 'YYYY-MM-DD');
+  months_between_dates NUMBER;
+BEGIN
+  months_between_dates := MONTHS_BETWEEN(end_date, start_date);
+  DBMS_OUTPUT.PUT_LINE('Months between dates: ' || months_between_dates);
+END;
+/
