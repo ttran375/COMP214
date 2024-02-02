@@ -45,3 +45,18 @@ BEGIN
     LV_ORD_DATE := SYSDATE; -- Assign the current date to the date variable
 END;
 /
+
+DECLARE
+  myVariable NUMBER(10); -- Starts with a letter, contains lowercase letters
+  VAR123     VARCHAR2(25); -- Starts with a letter, contains numbers
+  _temp      DATE; -- Starts with a letter, contains an underscore
+  $total#    NUMBER(2); -- Starts with a letter, contains a dollar sign and a hash symbol
+BEGIN
+  -- PL/SQL executable statements go here
+    myVariable := 100;
+    VAR123 := 'Hello World';
+    _temp := SYSDATE;
+    $total# := 100;
+    
+END;
+/
