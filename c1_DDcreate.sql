@@ -1,8 +1,5 @@
-DROP TABLE dd_donor CASCADE CONSTRAINTS;
-DROP TABLE dd_project CASCADE CONSTRAINTS;
-DROP TABLE dd_status CASCADE CONSTRAINTS;
-DROP TABLE dd_pledge CASCADE CONSTRAINTS;
-DROP TABLE dd_payment CASCADE CONSTRAINTS;
+alter session set nls_date_format='DD-MON-YYYY';
+
 CREATE TABLE DD_Donor (
 	idDonor number(4),
 	Firstname varchar2(15),
