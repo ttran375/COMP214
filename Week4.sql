@@ -199,3 +199,36 @@ BEGIN
   END CASE;
 END;
 /
+
+DECLARE
+  my_var NUMBER := 10;
+BEGIN
+  IF my_var > 5 THEN
+    DBMS_OUTPUT.PUT_LINE('my_var is greater than 5');
+  END IF;
+END;
+/
+
+DECLARE
+  my_var NUMBER := 10;
+BEGIN
+  IF my_var > 5 THEN
+    DBMS_OUTPUT.PUT_LINE('my_var is greater than 5');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('my_var is not greater than 5');
+  END IF;
+END;
+/
+
+DECLARE
+  my_var NUMBER := 10;
+BEGIN
+  IF my_var > 10 THEN
+    DBMS_OUTPUT.PUT_LINE('my_var is greater than 10');
+  ELSIF my_var = 10 THEN
+    DBMS_OUTPUT.PUT_LINE('my_var is equal to 10');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('my_var is less than 10');
+  END IF;
+END;
+/
