@@ -97,3 +97,32 @@ BEGIN
         lv_days_num
     );
 END;
+
+-- FIGURE 3-11 Retrieving state data to determine the tax amount
+DECLARE
+    lv_state_txt bb_basket.shipstate%TYPE;
+    lv_sub_num bb_basket.subtotal%TYPE;
+    lv_tax_num NUMBER(4,2) := 0;
+BEGIN
+    SELECT 
+        subtotal, 
+        shipstate
+    INTO 
+        lv_sub_num, 
+        lv_state_txt
+    FROM 
+        bb_basket
+    WHERE 
+        idbasket = 6;
+
+    IF lv_state_txt = 'VA' THEN
+        lv_tax_num := lv_sub_num * .06;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE(
+        'ST: ' || lv_state_txt || 
+        ' Sub: ' || lv_sub_num || 
+        ' Tax: ' || lv_tax_num
+    );
+END;
+
