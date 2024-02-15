@@ -1,9 +1,13 @@
 BEGIN
-UPDATE bb_product
-SET stock stock + 25
-WHERE idProduct = 15;
-DBMS_OUTPUT.PUT_LINE (SQL*ROWCOUNT);
-IF SQL NOTFOUND THEN
-DBMS_OUTPUT.PUT_LINE('Not Found');
-END IF;
-END:
+    UPDATE bb_product
+    SET
+        stock = stock + 25
+    WHERE
+        idProduct = 15;
+    IF SQL%ROWCOUNT = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Not Found');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQL%ROWCOUNT));
+    END IF;
+END;
+
