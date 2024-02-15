@@ -272,3 +272,19 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('A problem has occurred in retrieving your saved basket.');
         DBMS_OUTPUT.PUT_LINE('Tech Support will be notified and contact you via email.');
 END;
+
+
+DECLARE
+  ex_prod_update EXCEPTION;
+BEGIN
+  UPDATE bb_product
+  SET description= 'Mill grinder with 5 grind settings!'
+  WHERE idProduct = 30;
+
+  IF SQL%NOTFOUND THEN 
+    RAISE ex_prod_update;
+  END IF;
+EXCEPTION
+  WHEN ex_prod_update THEN
+    DBMS_OUTPUT.PUT_LINE('Invalid product ID entered');
+END;
