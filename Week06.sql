@@ -213,3 +213,62 @@ BEGIN
     END IF;
 END;
 /
+
+-- Bulk-processing (Query)
+DECLARE
+    CURSOR CUR_ITEM IS
+    SELECT
+        *
+    FROM
+        BB_BASKETITEM;
+    TYPE TYPE_ITEM IS
+        TABLE OF CUR_ITEM%ROWTYPE INDEX BY PLS_INTEGER;
+    tbl_item TYPE_ITEM;
+BEGIN
+    OPEN CUR_ITEM;
+    LOOP
+        FETCH CUR_ITEM BULK COLLECT INTO TBL_ITEM LIMIT 1000;
+        FOR I IN 1..TBL_ITEM.COUNT LOOP
+            DBMS_OUTPUT.PUT_LINE(TBL_ITEM(I).IDBASKETITEM
+                                           || ' -'
+                                           || TBL_ITEM(I).IDPRODUCT);
+        END LOOP;
+
+        EXIT WHEN CUR_ITEM%NOTFOUND;
+    END LOOP;
+
+    CLOSE CUR_ITEM;
+END;
+ -- Bulk-processing (DML)
+ -- DECLARE
+ --      TYPE emp_type IS TABLE OF NUMBER INDEX
+ --              BY BINARY_INTEGER;
+ --      emp_tbl emp_type;
+ -- BEGIN
+ --       SELECT empID
+ --          BULK COLLECT INTO emp_tbl
+ --          FROM employees
+ --            WHERE classtype = '100';
+ --       FORALL i IN d_emp_tbl.FIRST .. emp_tbl.LAST
+ --          UPDATE employees
+ --               SET raise = salary * .06
+ --               WHERE empID = emp_tbl(i);
+ --          COMMIT;
+ -- END;
+DECLARE
+ -- Declare variables here
+    v_number NUMBER := 10;
+BEGIN
+ -- Your code here
+    IF v_number > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('The number is positive.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('The number is not positive.');
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('You have no saved baskets!');
+    WHEN TOO_MANY_ROWS THEN
+        DBMS_OUTPUT.PUT_LINE('A problem has occurred in retrieving your saved basket.');
+        DBMS_OUTPUT.PUT_LINE('Tech Support will be notified and contact you via email.');
+END;
