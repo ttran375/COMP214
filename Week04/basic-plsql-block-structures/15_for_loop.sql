@@ -1,0 +1,6 @@
+-- FOR Loop
+BEGIN
+    FOR i IN 1..5 LOOP
+        DBMS_OUTPUT.PUT_LINE(i);
+    END LOOP;
+END;
