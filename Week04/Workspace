@@ -1,4 +1,3 @@
--- Traditional Join
 SELECT
     p.productname,
     p.active,
