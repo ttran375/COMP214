@@ -1,8 +1,6 @@
-SELECT
-    p.productname,
-    p.active,
-    d.deptname
-FROM
-    bb_product    p
-    JOIN bb_department d
-    ON p.iddepartment = d.iddepartment;
+CREATE TABLE autos (
+    auto_id NUMBER(5),
+    acquire_date DATE,
+    color VARCHAR2(15),
+    CONSTRAINT auto_id_pk PRIMARY KEY (auto_id)
+);
