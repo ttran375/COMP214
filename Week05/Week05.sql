@@ -1,3 +1,4 @@
+-- Include SQL within a Block
 DECLARE
     lv_created_date DATE;
     lv_basket_num   NUMBER(3);
@@ -43,7 +44,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(lv_qty_num);
 END;
 
--- FIGURE 3-5 A block checking for an uncompleted basket
+-- Executing a Block with Errors
 DECLARE
     lv_created_date DATE; lv_basket_num NUMBER (3);
     lv_qty_num NUMBER (3);
@@ -126,7 +127,7 @@ BEGIN
     );
 END;
 
--- FIGURE 3-12 Including data retrieval and conditional IF processing in a block
+-- IF Statement Example
 DECLARE
     lv_state_txt bb_basket.shipstate%TYPE;
     lv_sub_num bb_basket.subtotal%TYPE;
@@ -161,7 +162,7 @@ BEGIN
 END;
 /
 
--- FIGURE 3-14 Performing an INSERT in a block
+-- Including DML
 DECLARE
   lv_first_txt bb_shopper.firstname%TYPE := 'Jeffrey';
   lv_last_txt bb_shopper.lastname%TYPE := 'Brand';
@@ -203,7 +204,7 @@ BEGIN
 END;
 /
 
--- Create record structure based on table structure
+-- %ROWTYPE Attribute
 DECLARE
 rec_shopper bb_shopper%ROWTYPE;
 BEGIN
