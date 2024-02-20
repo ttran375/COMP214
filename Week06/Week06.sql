@@ -12,6 +12,7 @@ BEGIN
     END IF;
 END;
 
+
 DECLARE
     lv_tot_num bb_basket.total%TYPE;
 BEGIN
