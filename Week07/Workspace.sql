@@ -1,13 +1,11 @@
-CREATE OR REPLACE PROCEDURE SHIP_COST_SP (
-    p_qty IN NUMBER,
-    p_ship OUT NUMBER
-) AS
+CREATE OR REPLACE PROCEDURE phone_fmt_sp (
+    p_phone IN OUT VARCHAR2
+) IS
 BEGIN
-    IF p_qty > 10 THEN
-        p_ship := 11.00;
-    ELSIF p_qty > 5 THEN
-        p_ship := 8.00;
-    ELSE
-        p_ship := 5.00;
-    END IF;
-END SHIP_COST_SP;
+    p_phone := '('
+               || SUBSTR(p_phone, 1, 3)
+                  || ')'
+                  || SUBSTR(p_phone, 4, 3)
+                     || '-'
+                     || SUBSTR(p_phone, 7, 4);
+END;
