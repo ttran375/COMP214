@@ -1,3 +1,4 @@
+-- Implicit Cursor
 BEGIN
     UPDATE bb_product
     SET
