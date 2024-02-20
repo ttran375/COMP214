@@ -1,37 +1,29 @@
 DECLARE
-    promo_flag VARCHAR2(1); -- Assuming promo_flag is a single character flag
+    lv_one_num NUMBER(2) := 10;
+    lv_two_num NUMBER(2) := 20;
 BEGIN
-    FOR rec_purch IN cur_purch LOOP
-        IF rec_purch.sub > 50 THEN
-            promo_flag := 'A';
-        ELSIF rec_purch.sub > 25 THEN
-            promo_flag := 'B';
-        END IF;
+    DECLARE
+        lv_one_num   NUMBER(2) := 30;
+        lv_three_num NUMBER(2) := 40;
+    BEGIN
+        lv_one_num := lv_one_num + 10;
+        lv_two_num := lv_two_num + 10;
+        DBMS_OUTPUT.PUT_LINE('Nested one = '
+                             || lv_one_num);
+        DBMS_OUTPUT.PUT_LINE('Nested two = '
+                             || lv_two_num);
+        DBMS_OUTPUT.PUT_LINE('Nested three = '
+                             || lv_three_num);
+    END;
 
-        DBMS_OUTPUT.PUT_LINE('Shopper '
-                             || rec_purch.idshopper
-                             || ' has sub '
-                             || rec_purch.sub
-                             || ' and flag = '
-                             || promo_flag);
-        IF promo_flag IS NOT NULL THEN
-            DBMS_OUTPUT.PUT_LINE('Insert processed for shopper');
- -- Assuming path and p_year are variables that should be defined before
-            INSERT INTO bb_promolist (
-                idshopper,
-                column_name_for_path,
-                column_name_for_year,
-                promo_flag,
-                some_other_column
-            ) VALUES (
-                rec_purch.idshopper,
-                path,
-                p_year,
-                promo_flag,
-                NULL
-            );
-        END IF;
-    END LOOP;
-
-    COMMIT;
+    lv_one_num := lv_one_num + 10;
+    lv_two_num := lv_two_num + 10;
+    lv_three_num := lv_three_num + 10;
+    DBMS_OUTPUT.PUT_LINE('Enclosing one = '
+                         || lv_one_num);
+    DBMS_OUTPUT.PUT_LINE('Enclosing two = '
+                         || lv_two_num);
+    DBMS_OUTPUT.PUT_LINE('Enclosing three = '
+                         || lv_three_num);
 END;
+/
