@@ -1,9 +1,9 @@
---Create a new Procedure
+--Create a new Function
 
--- Procedure definition
+-- Start with function signature
 
-CREATE PROCEDURE PROCEDURE1 (
-  PARAM1 IN NUMBER) IS
+CREATE FUNCTION FUNCTION1 (
+PARAM1 IN NUMBER) RETURN NUMBER IS
 
 -- Declare constants and variables in this section.
 -- Example: <Variable Identifier> <DATATYPE>
@@ -12,7 +12,6 @@ CREATE PROCEDURE PROCEDURE1 (
 --          varComm   REAL;
 --          varSalary CONSTANT NUMBER:=1000;
 --          comm_missing EXCEPTION;
-  varSum NUMBER;
 
 -- Executable part starts here
 BEGIN
@@ -30,11 +29,11 @@ BEGIN
   --         RAISE comm_missing;
   --     END IF;
 
-  NULL;
+  RETURN PARAM1;
 
   -- EXCEPTION -- exception-handling part starts here
   -- WHEN comm_missing THEN
   --   dbms_output.put_line('Commision is NULL');
 
-END PROCEDURE1;
+END FUNCTION1;
 /
