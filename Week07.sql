@@ -44,3 +44,50 @@ BEGIN
 END;
 
 -- Invoking a function by name
+-- Creating a function
+CREATE OR REPLACE FUNCTION ship_calc_sf (
+    P_QTY IN NUMBER
+) RETURN NUMBER IS
+    lv_ship_num NUMBER := 0;
+BEGIN
+    IF P_QTY > 10 THEN
+        lv_ship_num := 11.00;
+    ELSIF P_QTY > 5 THEN
+        lv_ship_num := 8.00;
+    ELSE
+        lv_ship_num := 5.00;
+    END IF;
+
+    RETURN lv_ship_num;
+END ship_calc_sf;
+/
+
+DECLARE
+    lv_result NUMBER(5, 2);
+BEGIN
+    lv_result := ship_calc_sf(12);
+ -- Now you can use lv_result as needed, for example, print it:
+    DBMS_OUTPUT.PUT_LINE('Result: '
+                         || lv_result);
+END;
+/
+
+-- Using a function in an SQL statement
+SELECT
+    idBasket,
+    shipping               AS actual,
+    ship_calc_sf(quantity) AS calc
+FROM
+    bb_basket
+WHERE
+    orderplaced = 1;
+
+-- Using a function in an aggregate query
+SELECT
+    SUM(shipping)                               AS actual,
+    SUM(ship_calc_sf(quantity))                 AS calc,
+    SUM(shipping) - SUM(ship_calc_sf(quantity)) AS diff
+FROM
+    bb_basket
+WHERE
+    orderplaced = 1;
