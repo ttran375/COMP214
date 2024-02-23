@@ -112,10 +112,12 @@ END;
 /
 
 DECLARE
-    v_result VARCHAR2(100);
+    lv_name_txt  VARCHAR2(50);
+    lv_id_num    NUMBER(4) := 25;
+    lv_first_txt VARCHAR2(15) := 'Scott';
+    lv_last_txt  VARCHAR2(20) := 'Savid';
 BEGIN
-    v_result := MEMFMT1_SF(123, 'John', 'Doe');
-    DBMS_OUTPUT.PUT_LINE('Formatted String: '
-                         || v_result);
+    lv_name_txt := memfmt1_sf(lv_id_num, lv_first_txt, lv_last_txt);
+    DBMS_OUTPUT.PUT_LINE(lv_name_txt);
 END;
 /
