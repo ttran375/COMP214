@@ -5,3 +5,4 @@ BEGIN
     v_amt1 := 32.50;
     v_amt2 := ROUND(v_amt1, 0);
     DBMS_OUTPUT.PUT_LINE(v_amt2);
+END;
