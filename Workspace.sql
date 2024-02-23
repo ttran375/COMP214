@@ -1,13 +1,19 @@
--- A function with multiple RETURN statements
-CREATE OR REPLACE FUNCTION ship_calc2_sf (
-    p_qty IN NUMBER
-) RETURN NUMBER IS
+CREATE OR REPLACE PROCEDURE prodname_chg2_sp (
+    p_id IN bb_product.idproduct%TYPE,
+    p_name IN bb_product.productname%TYPE,
+    P_flag CHAR DEFAULT 'N'
+)
+IS
 BEGIN
-    IF p_qty > 10 THEN
-        RETURN 11.00;
-    ELSIF p_qty > 5 THEN
-        RETURN 8.00;
-    ELSE
-        RETURN 5.00;
+    UPDATE bb_product
+    SET productname = p_name
+    WHERE idproduct = p_id;
+
+    IF SQL%ROWCOUNT = 0 THEN
+        RETURN;
     END IF;
+
+    COMMIT;
+
+    P_flag := 'Y'; -- Corrected syntax for assigning value to P_flag
 END;
