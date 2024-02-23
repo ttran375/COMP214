@@ -186,3 +186,34 @@ BEGIN
                          || lv_name_txt);
 END;
 /
+
+-- A function with one RETURN statement
+CREATE OR REPLACE FUNCTION ship_calc_sf (p_qty IN NUMBER)
+RETURN NUMBER
+IS
+    lv_ship_num NUMBER (5,2);
+BEGIN
+    IF p_qty > 10 THEN -- Fixed comparison operator
+        lv_ship_num := 11.00; -- Use := for assignment
+    ELSIF p_qty > 5 THEN -- Changed condition to check if greater than 10 already
+        lv_ship_num := 8.00; -- Use := for assignment
+    ELSE
+        lv_ship_num := 5.00; -- Use := for assignment
+    END IF; -- Corrected syntax for IF statement
+
+    RETURN lv_ship_num;
+END ship_calc_sf; -- Corrected function end syntax
+
+-- A function with multiple RETURN statements
+CREATE OR REPLACE FUNCTION ship_calc2_sf (
+    p_qty IN NUMBER
+) RETURN NUMBER IS
+BEGIN
+    IF p_qty > 10 THEN
+        RETURN 11.00;
+    ELSIF p_qty > 5 THEN
+        RETURN 8.00;
+    ELSE
+        RETURN 5.00;
+    END IF;
+END;
