@@ -20,3 +20,20 @@ BEGIN
     p_total := NVL(p_sub, 0) + NVL(p_ship, 0);
     DBMS_OUTPUT.PUT_LINE('Order total proc ended');
 END ORDER_TOTAL_SP;
+/
+
+DECLARE
+    p_bsktid bb_basketitem.idbasket%TYPE;
+    p_cnt NUMBER;
+    p_sub NUMBER;
+    p_ship NUMBER;
+    p_total NUMBER;
+BEGIN
+    p_bsktid := 1; -- replace with the actual basket id
+    ORDER_TOTAL_SP(p_bsktid, p_cnt, p_sub, p_ship, p_total);
+    DBMS_OUTPUT.PUT_LINE('Count: ' || p_cnt);
+    DBMS_OUTPUT.PUT_LINE('Subtotal: ' || p_sub);
+    DBMS_OUTPUT.PUT_LINE('Shipping: ' || p_ship);
+    DBMS_OUTPUT.PUT_LINE('Total: ' || p_total);
+END;
+/
