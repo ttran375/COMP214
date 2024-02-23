@@ -1,3 +1,21 @@
+CREATE OR REPLACE PROCEDURE phone_fmt_sp
+   (p_phone IN OUT VARCHAR2)
+  IS
+BEGIN
+  p_phone := '(' || SUBSTR(p_phone,1,3) || ')' ||
+                    SUBSTR(p_phone,4,3) || '-' ||
+                    SUBSTR(p_phone,7,4);
+END;
+
+DECLARE
+  v_phone_number VARCHAR2(20);
+BEGIN
+  v_phone_number := '1234567890'; -- Input phone number without formatting
+  phone_fmt_sp(v_phone_number);   -- Call the procedure to format the phone number
+  DBMS_OUTPUT.PUT_LINE('Formatted phone number: ' || v_phone_number);
+END;
+
+
 -- Oracle built-in ROUND function
 SELECT
     idProduct,
@@ -92,7 +110,7 @@ FROM
 WHERE
     orderplaced = 1;
 
--- Building and Testing a Function...
+-- Building and Testing a Function for the Brewbean’s Member Name Display
 CREATE OR REPLACE FUNCTION memfmt1_sf (
     p_id IN NUMBER,
     p_first IN VARCHAR2,
@@ -119,5 +137,52 @@ DECLARE
 BEGIN
     lv_name_txt := memfmt1_sf(lv_id_num, lv_first_txt, lv_last_txt);
     DBMS_OUTPUT.PUT_LINE(lv_name_txt);
+END;
+/
+
+-- Building and Testing a Function...
+CREATE OR REPLACE PROCEDURE login_sp (
+    p_user IN VARCHAR2,
+    p_pass IN VARCHAR2,
+    p_id OUT NUMBER,
+    p_flag OUT CHAR,
+    p_mem OUT VARCHAR2
+) IS
+    lv_first_txt bb_shopper.firstname%TYPE;
+    lv_last_txt  bb_shopper.lastname%TYPE;
+BEGIN
+    SELECT
+        idShopper,
+        firstname,
+        lastname INTO p_id,
+        lv_first_txt,
+        lv_last_txt
+    FROM
+        bb_shopper
+    WHERE
+        username = p_user
+        AND password = p_pass;
+    p_flag := 'Y';
+    p_mem := memfmt1_sf(p_id, lv_first_txt, lv_last_txt);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        p_flag := 'N';
+END;
+/
+
+DECLARE
+    lv_user_txt bb_shopper.username%TYPE := 'fdwell';
+    lv_pass_txt bb_shopper.password%TYPE := 'tweak';
+    lv_id_num   bb_shopper.idshopper%TYPE;
+    lv_flag_txt CHAR(1);
+    lv_name_txt VARCHAR2(50);
+BEGIN
+    login_sp(lv_user_txt, lv_pass_txt, lv_id_num, lv_flag_txt, lv_name_txt);
+    DBMS_OUTPUT.PUT_LINE('ID Number: '
+                         || lv_id_num);
+    DBMS_OUTPUT.PUT_LINE('Flag Text: '
+                         || lv_flag_txt);
+    DBMS_OUTPUT.PUT_LINE('Name Text: '
+                         || lv_name_txt);
 END;
 /
