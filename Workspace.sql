@@ -1,23 +1,59 @@
--- Forward Declarations
-CREATE OR REPLACE PACKAGE BODY ordering_pkg IS
+CREATE OR REPLACE PACKAGE product_info_pkg IS
 
-    FUNCTION ship_calc_pf(
-        p_qty IN NUMBER
-    ) RETURN NUMBER IS
-    BEGIN
- -- Implementation of ship_calc_pf function goes here
-        RETURN 0; -- Placeholder return value
-    END ship_calc_pf;
+    PROCEDURE prod_search_pp(
+        p_id IN bb_product.idproduct%TYPE,
+        p_sale OUT bb_product.saleprice%TYPE,
+        p_price OUT bb_product.price%TYPE
+    );
 
-    PROCEDURE order_total_pp(
-        p_bsktid IN bb_basketitem.idbasket,
-        p_cnt OUT NUMBER,
-        p_sub OUT NUMBER,
-        p_ship OUT NUMBER,
-        p_total OUT NUMBER
+    PROCEDURE prod_search_by_name(
+        p_name IN bb_product.productname%TYPE,
+        p_sale OUT bb_product.saleprice%TYPE,
+        p_price OUT bb_product.price%TYPE
+    );
+END product_info_pkg;
+/
+
+CREATE OR REPLACE PACKAGE BODY product_info_pkg IS
+
+    PROCEDURE prod_search_pp(
+        p_id IN bb_product.idproduct%TYPE,
+        p_sale OUT bb_product.saleprice%TYPE,
+        p_price OUT bb_product.price%TYPE
     ) IS
     BEGIN
- -- Implementation of order_total_pp procedure goes here
-        NULL; -- Placeholder implementation
-    END order_total_pp;
-END ordering_pkg;
+        SELECT
+            saleprice,
+            price INTO p_sale,
+            p_price
+        FROM
+            bb_product
+        WHERE
+            idProduct = p_id;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+ -- Handle no data found error
+            NULL;
+    END prod_search_pp;
+
+    PROCEDURE prod_search_by_name(
+        p_name IN bb_product.productname%TYPE,
+        p_sale OUT bb_product.saleprice%TYPE,
+        p_price OUT bb_product.price%TYPE
+    ) IS
+    BEGIN
+        SELECT
+            saleprice,
+            price INTO p_sale,
+            p_price
+        FROM
+            bb_product
+        WHERE
+            productname = p_name;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+ -- Handle no data found error
+            NULL;
+    END prod_search_by_name;
+END product_info_pkg;
+/
