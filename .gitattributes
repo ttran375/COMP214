@@ -1,3 +1,7 @@
 *.sql linguist-detectable=true
 *.txt linguist-detectable=false
 *.sql linguist-language=PLSQL
+/views/*.sql linguist-language=SQL
+/additional_database_objects/*.sql linguist-language=SQL
+/selected_single_row_functions/*.sql linguist-language=SQL
+/subqueries_and_merge_statements/*.sql linguist-language=SQL

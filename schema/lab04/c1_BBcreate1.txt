@@ -1,35 +1,5 @@
 alter session set nls_date_format='DD-MON-YYYY';
 
-DROP VIEW bb_basketitem_vu;
-DROP VIEW bb_ship_vu;
-DROP TABLE bb_department CASCADE CONSTRAINTS;
-DROP TABLE bb_product CASCADE CONSTRAINTS;
-DROP TABLE bb_productoption CASCADE CONSTRAINTS;
-DROP TABLE bb_productoptiondetail CASCADE CONSTRAINTS;
-DROP TABLE bb_productoptioncategory CASCADE CONSTRAINTS;
-DROP TABLE bb_basketitem CASCADE CONSTRAINTS;
-DROP TABLE bb_basket CASCADE CONSTRAINTS;
-DROP TABLE bb_shopper CASCADE CONSTRAINTS;
-DROP TABLE bb_basketstatus CASCADE CONSTRAINTS;
-DROP TABLE bb_tax CASCADE CONSTRAINTS;
-DROP TABLE bb_shipping CASCADE CONSTRAINTS;
-DROP TABLE bb_promolist CASCADE CONSTRAINTS;
-DROP TABLE bb_promo CASCADE CONSTRAINTS;
-DROP TABLE bb_test1 CASCADE CONSTRAINTS;
-DROP TABLE bb_test2 CASCADE CONSTRAINTS;
-DROP TABLE bb_prod_sales CASCADE CONSTRAINTS;
-DROP TABLE bb_shop_sales CASCADE CONSTRAINTS;
-DROP TABLE bb_audit_logon CASCADE CONSTRAINTS;
-DROP TABLE bb_product_request CASCADE CONSTRAINTS;
-DROP TABLE bb_blocktest CASCADE CONSTRAINTS;
-DROP TABLE bb_trans_log CASCADE CONSTRAINTS;
-DROP SEQUENCE bb_prodid_seq;
-DROP SEQUENCE bb_shopper_seq;
-DROP SEQUENCE bb_poption_seq;
-DROP SEQUENCE bb_idbasket_seq;
-DROP SEQUENCE bb_idbasketitem_seq;
-DROP SEQUENCE bb_status_seq;
-DROP SEQUENCE bb_prodreq_seq;
 CREATE TABLE BB_Department (
 	idDepartment number(2)  ,
 	DeptName varchar2(25) ,
@@ -429,7 +399,7 @@ INSERT INTO bb_basketstatus (idstatus, idbasket, idstage, dtstage)
 INSERT INTO bb_basketstatus (idstatus, idbasket, idstage, dtstage)
      VALUES (3,4,1,'13-FEB-2012');
 INSERT INTO bb_basketstatus (idstatus, idbasket, idstage, dtstage)
-     VALUES (4,4,5,'13-FEB-2012');
+     VALUES (4,4,5,'14-FEB-2012');
 INSERT INTO bb_basketstatus
    VALUES (bb_status_seq.NEXTVAL, 12, 3, NULL, NULL, NULL, NULL);
 update bb_basketstatus
@@ -477,23 +447,5 @@ CREATE OR REPLACE VIEW bb_ship_vu
 CREATE TABLE bb_audit_logon
   ( userid VARCHAR2(10),
     logdate DATE );
-UPDATE bb_basket
-  SET shipfirstname='John',shiplastname='Carter',
-      shipaddress='21 Front St.',shipcity='Raleigh',
-      shipstate='NC',shipzipcode='54822'
-   WHERE idBasket = 4;
-UPDATE bb_basket
-  SET shipfirstname='Margaret',shiplastname='Somner',
-      shipaddress='287 Walnut Drive',shipcity='Chesapeake',
-      shipstate='VA',shipzipcode='23321'
-   WHERE idBasket = 6;
-CREATE TABLE bb_trans_log (
-   shopper NUMBER(4),
-   appaction VARCHAR2(20),
-   errcode VARCHAR2(10),
-   errmsg VARCHAR2(80) );
-UPDATE bb_basket
- SET shipping = 0
- WHERE idBasket IN (7,8);
 COMMIT;
 
