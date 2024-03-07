@@ -16,3 +16,30 @@ IS
     ) RETURN NUMBER;
 END ordering_pkg;
 /
+
+-- Invoking Package Constructs
+-- DECLARE
+--     lv_bask_num  bb_basketitem := bb_basketitem(12);
+--     lv_cnt_num   NUMBER(3);
+--     lv_sub_num   NUMBER(8, 2);
+--     lv_ship_num  NUMBER(8, 2);
+--     lv_total_num NUMBER(8, 2);
+-- BEGIN
+--     ordering_pkg.order_total_pp( lv_bask_num, lv_cnt_num, lv_sub_num, lv_ship_num, lv_total_num );
+--     DBMS_OUTPUT.PUT_LINE('Count: '
+--                          || lv_cnt_num);
+--     DBMS_OUTPUT.PUT_LINE('Subtotal: '
+--                          || lv_sub_num);
+--     DBMS_OUTPUT.PUT_LINE('Shipping: '
+--                          || lv_ship_num);
+--     DBMS_OUTPUT.PUT_LINE('Total: '
+--                          || lv_total_num);
+-- END;
+
+-- Package Specification
+CREATE OR REPLACE PACKAGE metric_pkg IS
+  cup_to_liter CONSTANT NUMBER := .24;
+  pint_to_liter CONSTANT NUMBER := .47;
+  qrt_to_liter CONSTANT NUMBER := .95;
+END;
+
