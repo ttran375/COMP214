@@ -1,25 +1,12 @@
-CREATE TABLE BB_BASKETITEM (
-    item_id INT PRIMARY KEY,
-    item_name VARCHAR(100),
-    price DECIMAL(10, 2),
-    quantity INT
-);
-
-CREATE PROCEDURE SHIP_COST_SP (
-    IN BASKET_ID INT,
-    OUT SHIPPING_COST DECIMAL(10, 2)
-)
+DECLARE
+    v_emp_name employees.first_name%TYPE;
+    v_emp_rec employees%ROWTYPE;
 BEGIN
- -- Your procedure logic here
- -- For example, you might calculate shipping cost based on basket_id
- -- Set the shipping_cost output parameter accordingly
+    SELECT first_name INTO v_emp_name FROM employees WHERE employee_id = 100;
+    SELECT * INTO v_emp_rec FROM employees WHERE employee_id = 100;
 END;
 
-SELECT
-    REFERENCED_NAME,
-    REFERENCED_TYPE,
-    REFERENCED_OWNER
-FROM
-    USER_DEPENDENCIES
-WHERE
-    NAME = 'ORDER_TOTAL_SP';
+SELECT * FROM employees;
+
+INSERT INTO employees (employee_id, first_name, last_name, hire_date)
+VALUES (101, 'John', 'Doe', TO_DATE('2024-03-14', 'YYYY-MM-DD'));

@@ -1,3 +1,4 @@
+-- Object Status
 SELECT
     object_name,
     status
@@ -12,6 +13,7 @@ BEGIN
 END;
 /
 
+-- Data Dictionary
 SELECT
     referenced_name,
     referenced_type,
