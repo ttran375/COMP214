@@ -45,3 +45,9 @@
 ## Week 9
 
 - Test
+
+## Week 10
+
+- In-Class Exercises: [Packages](packages)
+- Labs: [Lab Exercises for Chapter 7](https://github.com/ttran375/comp214-lab8)
+- Activity: [Activity 3](https://github.com/ttran375/comp214-activity3)
