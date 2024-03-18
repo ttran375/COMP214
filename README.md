@@ -45,10 +45,12 @@
 
 ## Week 9
 
+- In-Class Exercises: [CHAPTER 7 PL/SQL PACKAGES](packages)
+- Labs: [Lab Exercises for Chapter 7](https://github.com/ttran375/comp214-lab8)
 - Test
 
 ## Week 10
 
-- In-Class Exercises: [Packages](packages)
-- Labs: [Lab Exercises for Chapter 7](https://github.com/ttran375/comp214-lab8)
+- In-Class Exercises: CHAPTER 8 DEPENDENCIES, PRIVILEGES, AND COMPILATION
+- Labs: [Lab Exercises for Chapter 8](https://github.com/ttran375/comp214-lab9)
 - Activity: [Activity 3](https://github.com/ttran375/comp214-activity3)
