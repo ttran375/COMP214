@@ -1,12 +1,29 @@
+CREATE OR REPLACE TRIGGER product_inventory_trg AFTER
+    UPDATE OF orderplaced ON bb_basket FOR EACH ROW WHEN (OLD.orderplaced <> 1
+    AND NEW.orderplaced = 1)
 DECLARE
-    v_emp_name employees.first_name%TYPE;
-    v_emp_rec employees%ROWTYPE;
+    CURSOR basketitem_cur IS
+    SELECT
+        idproduct,
+        quantity,
+        option1
+    FROM
+        bb_basketitem
+    WHERE
+        idbasket = :NEW.idbasket;
+    lv_chg_num NUMBER(3, 1);
 BEGIN
-    SELECT first_name INTO v_emp_name FROM employees WHERE employee_id = 100;
-    SELECT * INTO v_emp_rec FROM employees WHERE employee_id = 100;
+    FOR basketitem_rec IN basketitem_cur LOOP
+        IF basketitem_rec.option1 = 1 THEN
+            lv_chg_num := (.5 * basketitem_rec.quantity);
+        ELSE
+            lv_chg_num := basketitem_rec.quantity;
+        END IF;
+        UPDATE bb_product
+        SET
+            stock = stock - lv_chg_num
+        WHERE
+            idproduct = basketitem_rec.idproduct;
+    END LOOP;
 END;
-
-SELECT * FROM employees;
-
-INSERT INTO employees (employee_id, first_name, last_name, hire_date)
-VALUES (101, 'John', 'Doe', TO_DATE('2024-03-14', 'YYYY-MM-DD'));
+/
