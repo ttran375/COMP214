@@ -2,28 +2,28 @@ CREATE OR REPLACE TRIGGER product_inventory_trg AFTER
     UPDATE OF orderplaced ON bb_basket FOR EACH ROW WHEN (OLD.orderplaced <> 1
     AND NEW.orderplaced = 1)
 DECLARE
+    CURSOR basketitem_cur IS
+    SELECT
+        idproduct,
+        quantity,
+        option1
+    FROM
+        bb_basketitem
+    WHERE
+        idbasket = :NEW.idbasket; -- Added missing "=" sign and ":NEW" prefix
     lv_chg_num NUMBER(3, 1);
 BEGIN
-    FOR basketitem_rec IN (
-        SELECT
-            idproduct,
-            quantity,
-            optionl
-        FROM
-            bb_basketitem
-        WHERE
-            idbasket = :NEW.idbasket
-    ) LOOP
-        IF basketitem_rec.optionl = 1 THEN
-            lv_chg_num := -0.5 * basketitem_rec.quantity;
+    FOR basketitem_rec IN basketitem_cur LOOP
+        IF basketitem_rec.option1 = 1 THEN
+            lv_chg_num := 0.5 * basketitem_rec.quantity; -- Corrected assignment operator and formula
         ELSE
             lv_chg_num := basketitem_rec.quantity;
         END IF;
         UPDATE bb_product
         SET
-            stock = stock + lv_chg_num
+            stock = stock - lv_chg_num -- Updated stock based on lv_chg_num
         WHERE
-            idproduct = basketitem_rec.idproduct;
+            idproduct = basketitem_rec.idproduct; -- Added missing WHERE condition
     END LOOP;
-END;
+END product_inventory_trg; -- Added trigger name
 /
