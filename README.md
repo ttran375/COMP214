@@ -1,6 +1,6 @@
 # Advanced Database Concepts
 
-<https://drive.google.com/drive/folders/1skbjMNj7U1NQ3ZZajQWytStM6UH-gVRJ?usp=sharing>
+<https://drive.google.com/drive/folders/19dBX3m1Ds4maMcnY5KQFmon4puIq2GZP?usp=sharing>
 
 ## Week 1
 
