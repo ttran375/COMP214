@@ -105,5 +105,3 @@ COMPOUND TRIGGER
     END BEFORE EACH ROW;
 END bb_sales_trg;
 /
-
--- Trigger-firing Order
