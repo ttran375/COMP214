@@ -54,3 +54,9 @@
 - In-Class Exercises: [CHAPTER 8 DEPENDENCIES, PRIVILEGES, AND COMPILATION](dependencies-privileges-and-compilation)
 - Labs: [Lab Exercises for Chapter 8](https://github.com/ttran375/comp214-lab9)
 - Activity: [Activity 3](https://github.com/ttran375/comp214-activity3)
+
+## Week 11
+
+- In-Class Exercises: [CHAPTER 9 DATABASE TRIGGERS](dependencies-privileges-and-compilation)
+- Labs: [Lab Exercises for Chapter 8](https://github.com/ttran375/comp214-lab9)
+- Activity: [Activity 3](https://github.com/ttran375/comp214-activity3)
