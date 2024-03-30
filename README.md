@@ -29,7 +29,6 @@
 ## Week 6
 
 - In-Class Exercises: [CHAPTER 4 CURSORS AND EXCEPTION HANDLING](cursors-and-exception-handling)
-- Labs: [Lab Exercises for Chapter 4](https://github.com/ttran375/comp214-lab6)
 
 ## Week 7
 
