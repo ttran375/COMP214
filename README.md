@@ -19,7 +19,6 @@
 ## Week 4
 
 - In-Class Exercises: [CHAPTER 1 INTRODUCTION TO PL/SQL](introduction-to-plsql), [CHAPTER 2 BASIC PL/SQL BLOCK STRUCTURES](basic-plsql-block-structures)
-- Labs: [Lab Exercises for Chapter 2](https://github.com/ttran375/comp214-lab4)
 
 ## Week 5
 
