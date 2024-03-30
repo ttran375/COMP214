@@ -5,20 +5,17 @@
 ## Week 1
 
 - In-Class Exercises: [CHAPTER 10 SELECTED SINGLE-ROW FUNCTIONS](selected_single_row_functions)
-- Labs: [Lab Exercises - Single Row Functions](https://github.com/ttran375/comp214-lab1)
 
 ## Week 2
 
 - In-Class Exercises: [CHAPTER 6 ADDITIONAL DATABASE OBJECTS](additional_database_objects), [CHAPTER 13 VIEWS](views)
-- Labs: [Lab Exercises Module 2 - Database Objects, Lab Exercises Module 2 - Views](https://github.com/ttran375/comp214-lab2)
 
 ## Week 3
 
 - In-Class Exercises: [CHAPTER 12 SUBQUERIES AND MERGE STATEMENTS](subqueries_and_merge_statements)
-- Labs: [Lab Exercises Week 3 - Subqueries](https://github.com/ttran375/comp214-lab3)
-- Assignment: [Assignment #1 – Subqueries](https://github.com/ttran375/comp214-assignment1)
 - Activity: [Activity 1](https://github.com/ttran375/comp214-lab3)
-- 
+- Assignment: [Assignment #1 – Subqueries](https://github.com/ttran375/comp214-assignment1)
+
 ## Week 4
 
 - In-Class Exercises: [CHAPTER 1 INTRODUCTION TO PL/SQL](introduction-to-plsql), [CHAPTER 2 BASIC PL/SQL BLOCK STRUCTURES](basic-plsql-block-structures)
