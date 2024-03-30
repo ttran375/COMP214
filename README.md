@@ -40,7 +40,6 @@
 ## Week 9
 
 - In-Class Exercises: [CHAPTER 7 PL/SQL PACKAGES](packages)
-- Labs: [Lab Exercises for Chapter 7](https://github.com/ttran375/comp214-lab8)
 - Test: [Test 1](https://github.com/ttran375/comp214-test1)
 
 ## Week 10
