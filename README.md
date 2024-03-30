@@ -50,9 +50,9 @@
 ## Week 11
 
 - In-Class Exercises: [CHAPTER 9 DATABASE TRIGGERS](dependencies-privileges-and-compilation)
-- Activity: [Activity 3](https://github.com/ttran375/comp214-activity4)
+- Activity: [Activity 4](https://github.com/ttran375/comp214-activity4)
 
 ## Week 12
 
 - In-Class Exercises: MongoDB
-
+- Activity: [Activity 5](https://github.com/ttran375/comp214-activity5)
