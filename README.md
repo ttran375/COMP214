@@ -33,15 +33,15 @@
 ## Week 7
 
 - In-Class Exercises: [CHAPTER 5 PROCEDURES](procedures), [CHAPTER 6 FUNCTIONS](functions)
-- Labs: [Lab Exercises for Chapter 5, Lab Exercises for Chapter 6](https://github.com/ttran375/comp214-lab7)
 - Assignment: [Assignment #3 – Working with Procedures](https://github.com/ttran375/comp214-assignment3)
 
+## Week 8
 
 ## Week 9
 
 - In-Class Exercises: [CHAPTER 7 PL/SQL PACKAGES](packages)
 - Labs: [Lab Exercises for Chapter 7](https://github.com/ttran375/comp214-lab8)
-- Test
+- Test: [Test 1](https://github.com/ttran375/comp214-test1)
 
 ## Week 10
 
@@ -58,3 +58,4 @@
 ## Week 12
 
 - In-Class Exercises: MongoDB
+
