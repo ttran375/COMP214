@@ -23,9 +23,8 @@
 ## Week 5
 
 - In-Class Exercises: [CHAPTER 3 HANDLING DATA](handling-data)
-- Labs: [Lab Exercises for Chapter 3](https://github.com/ttran375/comp214-lab5)
-- Assignment: [Assignment #2 – Handling Data in PL/SQL Blocks](https://github.com/ttran375/comp214-assignment2)
 - Activity: [Activity 2](https://github.com/ttran375/comp214-activity2)
+- Assignment: [Assignment #2 – Handling Data in PL/SQL Blocks](https://github.com/ttran375/comp214-assignment2)
 
 ## Week 6
 
