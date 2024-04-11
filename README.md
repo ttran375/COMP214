@@ -56,6 +56,8 @@
 
 - In-Class Exercises: MongoDB
 - Activity: [Activity 5](https://github.com/ttran375/comp214-activity5)
-
-
 - Assignment: [Assignment #3 – Working with Procedures](https://github.com/ttran375/comp214-assignment3)
+
+## Week 13
+
+- Assignment: [Assignment #4 – Using Triggers](https://github.com/ttran375/comp214-assignment4)
