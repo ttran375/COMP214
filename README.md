@@ -54,7 +54,6 @@
 
 ## Week 12
 
-- In-Class Exercises: MongoDB
 - Activity: [Activity 5](https://github.com/ttran375/comp214-activity5)
 
 ## Week 13
