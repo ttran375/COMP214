@@ -59,3 +59,7 @@
 ## Week 13
 
 - Assignment: [Assignment #4 – Using Triggers](https://github.com/ttran375/comp214-assignment4)
+
+## Week 14
+
+- Test: [Test 2](https://github.com/ttran375/comp214-test2)
